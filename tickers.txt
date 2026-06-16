@@ -1,24 +1,24 @@
-# Open sim tickers — one per line
+# Open sim holdings — keep in sync (the daily summary flags any missing)
+ACGL
+ACN
+BTO.TO
+CF
+CINF
 CMG.TO
+CTAS
 DCBO.TO
 DECK
 DPM.TO
-EXPE
-ACN
+DTOL.TO
+DXCM
 EXPD
+EXPE
+FICO
 INCY
 PDD
+PGR
+PYPL
 QCOM
 QQQ
 SPY
 XIU.TO
-ACGL
-ADBE
-BTO.TO
-CINF
-ENGH.TO
-CTAS
-DXCM
-NOW
-PGR
-PTC
