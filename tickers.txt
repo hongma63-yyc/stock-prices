@@ -1,24 +1,21 @@
-# Open sim holdings — keep in sync (the daily summary flags any missing)
+# Auto-generated from open sim positions by sim_daily.py — do not hand-edit
 ACGL
-ACN
+ADBE
 BTO.TO
-CF
 CINF
 CMG.TO
 CTAS
 DCBO.TO
 DECK
 DPM.TO
-DTOL.TO
 DXCM
+ENGH.TO
 EXPD
 EXPE
-FICO
 INCY
+NOW
 PDD
 PGR
-PYPL
-QCOM
 QQQ
 SPY
 XIU.TO
