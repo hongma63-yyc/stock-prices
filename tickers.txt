@@ -1,9 +1,13 @@
-# Auto-generated from open sim positions by sim_daily.py — do not hand-edit
 ACGL
 ADBE
+AIGO.TO
+AQN.TO
+BRK-B
 BTO.TO
+BYDDY
 CINF
 CMG.TO
+CNQ.TO
 CTAS
 DCBO.TO
 DECK
@@ -12,10 +16,17 @@ DXCM
 ENGH.TO
 EXPD
 EXPE
+FICO
+GC=F
 INCY
+JD
+MSTR
 NOW
+ORCL
 PDD
 PGR
 QQQ
+SOBO.TO
 SPY
 XIU.TO
+XYZ
