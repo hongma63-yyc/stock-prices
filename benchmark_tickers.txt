@@ -1,0 +1,10 @@
+# Benchmark ETFs for the backtest comparison (full daily history backfill).
+# SPY/QQQ/XIU.TO are also in the local cache — included here to validate the backfill.
+SPY
+QQQ
+XIU.TO
+IWM
+EEM
+VGK
+MCHI
+VPL

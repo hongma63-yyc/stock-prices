@@ -1,8 +1,11 @@
 name: Fetch daily prices
 on:
   schedule:
-    - cron: '0 21 * * 1-5'      # weekdays, after US & TSX market close
+    - cron: '0 21 * * 1-5'      # weekdays, after US & TSX market close (GitHub often delays this)
   workflow_dispatch:            # lets you run it by hand too
+  push:
+    paths:
+      - 'refresh.txt'           # Mac pokes this in the evening to fetch same-day close on demand
 permissions:
   contents: write
 jobs:

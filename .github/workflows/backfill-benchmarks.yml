@@ -1,0 +1,46 @@
+name: Backfill benchmark history
+on:
+  workflow_dispatch:            # run this by hand from the Actions tab
+  push:
+    paths:
+      - 'benchmark_tickers.txt' # editing the ticker list re-runs the backfill
+permissions:
+  contents: write
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install yfinance
+      - name: Fetch full daily history
+        run: |
+          python - <<'EOF'
+          import yfinance as yf, csv
+          tickers = [t.strip() for t in open('benchmark_tickers.txt')
+                     if t.strip() and not t.startswith('#')]
+          rows = []
+          for t in tickers:
+              try:
+                  h = yf.Ticker(t).history(period='2y', auto_adjust=False)
+                  for dt, r in h.iterrows():
+                      c = r['Close']
+                      if c == c:   # skip NaN
+                          rows.append((t, dt.strftime('%Y-%m-%d'), round(float(c), 4)))
+                  print(t, len(h), 'rows')
+              except Exception as e:
+                  print(t, 'ERROR', e)
+          with open('benchmark_history.csv', 'w', newline='') as f:
+              w = csv.writer(f); w.writerow(['ticker', 'date', 'close'])
+              w.writerows(rows)
+          print('Total', len(rows), 'rows for', len(tickers), 'tickers')
+          EOF
+      - name: Commit history
+        run: |
+          git config user.name "price-bot"
+          git config user.email "price-bot@users.noreply.github.com"
+          git add benchmark_history.csv
+          git commit -m "Backfill benchmark daily history" || echo "no changes"
+          git push
