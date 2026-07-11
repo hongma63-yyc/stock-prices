@@ -5,7 +5,7 @@ on:
   workflow_dispatch:            # lets you run it by hand too
   push:
     paths:
-      - 'refresh.txt'           # Mac pokes this in the evening to fetch same-day close on demand
+      - 'refresh.txt'
 permissions:
   contents: write
 jobs:
