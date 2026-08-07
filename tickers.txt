@@ -2,7 +2,7 @@
 # Sources: dual_model_scores.xlsx 'All Scores' + v_momentum_signals.xlsx 'All Tickers'
 # + open sim positions + WealthTracker holdings (incl. ETFs & preferreds).
 # AIGO.TO removed (renamed AIG.TO). Preferreds use Yahoo dash form (BN-PF-M.TO).
-# Total 1346  |  TSX 824  |  US/other 522
+# Total 1345  |  TSX 823  |  US/other 522
 # STABLE LIST — sim_daily.py must no longer overwrite this file.
 A
 AAB.TO
@@ -1181,7 +1181,6 @@ TGO.TO
 TGT
 THNC.TO
 TI.TO
-TICKER.TO
 TIH.TO
 TINY.TO
 TJX
