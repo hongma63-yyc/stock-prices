@@ -108,12 +108,22 @@ jobs:
         run: |
           git config user.name "price-bot"
           git config user.email "price-bot@users.noreply.github.com"
-          git add prices.csv
-          git commit -m "Update prices" || { echo "no changes to commit"; exit 0; }
-          # Pull-rebase + retry so a concurrent push (another workflow, the Mac
-          # pusher, or a manual push) can't reject us with "fetch first".
+
+          # prices.csv is regenerated in full every run, so it ALWAYS conflicts on
+          # rebase when origin has moved. Don't merge it — just replay our fresh copy
+          # on top of the latest origin. Stash it outside the tree first.
+          cp prices.csv "$RUNNER_TEMP/prices.csv"
+
           for i in 1 2 3 4 5; do
-            if git pull --rebase --autostash origin main && git push; then
+            git fetch origin main
+            git reset --hard origin/main
+            cp "$RUNNER_TEMP/prices.csv" prices.csv
+            git add prices.csv
+            if git diff --cached --quiet; then
+              echo "no changes to commit"; exit 0
+            fi
+            git commit -m "Update prices"
+            if git push; then
               echo "pushed on attempt $i"; exit 0
             fi
             echo "push race on attempt $i, retrying..."; sleep $((RANDOM % 8 + 3))
